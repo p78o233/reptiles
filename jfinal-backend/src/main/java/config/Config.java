@@ -7,12 +7,7 @@ import com.jfinal.config.*;
 import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
-import controller.BackController;
-import controller.FrontController;
 import controller.HelloController;
-import domain.po.Test;
-import domain.po.Testc;
-import domain.po.User;
 import handler.WebSocketHandler;
 import interceptor.HeaderInterceptor;
 
@@ -26,10 +21,6 @@ public class Config extends JFinalConfig {
     public void configRoute(Routes routes) {
 //        添加controller
         routes.add("/blank/hello", HelloController.class);
-//        后台接口开头 /admin
-        routes.add("/admin/blank/test", BackController.class);
-//        前端接口开头 /api
-        routes.add("/api/blank/test", FrontController.class);
     }
 
     @Override
@@ -41,7 +32,7 @@ public class Config extends JFinalConfig {
     public void configPlugin(Plugins plugins) {
 //        数据库配置
 //        要自己添加maven依赖才能用
-        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1:3306/oa?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC", "root", "root");
+        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1:3306/reptiles?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC", "root", "root");
         plugins.add(dp);
         ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
 //        引入sql文件，用于动态sql语句
@@ -49,9 +40,9 @@ public class Config extends JFinalConfig {
         arp.addSqlTemplate("templets/more.sql");
         plugins.add(arp);
 //        添加对应的数据表
-        arp.addMapping("user", User.class);
-        arp.addMapping("test", Test.class);
-        arp.addMapping("testc", Testc.class);
+//        arp.addMapping("user", User.class);
+//        arp.addMapping("test", Test.class);
+//        arp.addMapping("testc", Testc.class);
 //        显示执行的sql
         arp.setShowSql(true);
         plugins.add(arp);
