@@ -24,10 +24,11 @@ public class HttpUtils {
         }
     }
     public static String get(String url, Map<String ,String> maps) {
-        url += url+"?";
+        url = url + "?";
         for(String key : maps.keySet()){
-            url+=url+key+"&"+(String)maps.get(key);
+            url = url+key+"="+(String)maps.get(key)+"&";
         }
+        url = url.substring(0,url.length()-1);
         Request request = new Request.Builder()
                 .url(url)
                 .get()

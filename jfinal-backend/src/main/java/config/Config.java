@@ -8,6 +8,7 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.template.Engine;
 import controller.HelloController;
+import controller.ReptilesController;
 import handler.WebSocketHandler;
 import interceptor.HeaderInterceptor;
 
@@ -21,6 +22,7 @@ public class Config extends JFinalConfig {
     public void configRoute(Routes routes) {
 //        添加controller
         routes.add("/blank/hello", HelloController.class);
+        routes.add("/reptiles", ReptilesController.class);
     }
 
     @Override
@@ -31,21 +33,21 @@ public class Config extends JFinalConfig {
     @Override
     public void configPlugin(Plugins plugins) {
 //        数据库配置
-//        要自己添加maven依赖才能用
-        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1:3306/reptiles?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC", "root", "root");
-        plugins.add(dp);
-        ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
-//        引入sql文件，用于动态sql语句
-        arp.addSqlTemplate("templets/hello.sql");
-        arp.addSqlTemplate("templets/more.sql");
-        plugins.add(arp);
-//        添加对应的数据表
-//        arp.addMapping("user", User.class);
-//        arp.addMapping("test", Test.class);
-//        arp.addMapping("testc", Testc.class);
-//        显示执行的sql
-        arp.setShowSql(true);
-        plugins.add(arp);
+////        要自己添加maven依赖才能用
+//        DruidPlugin dp = new DruidPlugin("jdbc:mysql://127.0.0.1:3306/reptiles?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC", "root", "root");
+//        plugins.add(dp);
+//        ActiveRecordPlugin arp = new ActiveRecordPlugin(dp);
+////        引入sql文件，用于动态sql语句
+//        arp.addSqlTemplate("templets/hello.sql");
+//        arp.addSqlTemplate("templets/more.sql");
+//        plugins.add(arp);
+////        添加对应的数据表
+////        arp.addMapping("user", User.class);
+////        arp.addMapping("test", Test.class);
+////        arp.addMapping("testc", Testc.class);
+////        显示执行的sql
+//        arp.setShowSql(true);
+//        plugins.add(arp);
 
 //        定时任务配置
 //        他妈的要自己引入maven包，牛逼得不行这个框架，详细见jfinal-backend/pom.xml
